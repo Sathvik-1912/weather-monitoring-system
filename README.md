@@ -75,7 +75,7 @@ API_KEY = 'your_openweathermap_api_key_here'
 ### 4. Run the Application
 
 ```bash
-python app.py
+python python.py
 ```
 
 By default, the app runs in debug mode on `http://127.0.0.1:5000/`. You can open this URL in your browser to access the application.
