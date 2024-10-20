@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Monitoring System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        #alert-container {
+            margin-top: 20px;
+        }
+        .weather-card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Real-Time Weather Monitoring System</h1>
+        <div id="weather-cards" class="row"></div>
+        <div id="alert-container"></div>
+        <h2 class="text-center">Visualize Temperature Trends</h2>
+        <div class="text-center">
+            <select id="city-select" class="form-control" style="width: 200px; display: inline-block;">
+                <option value="Delhi">Delhi</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+            </select>
+            <button class="btn btn-primary" onclick="visualizeTrends()">Show Trends</button>
+        </div>
+        <div class="text-center" style="margin-top: 20px;">
+            <img id="trend-image" style="max-width: 100%;"/>
+        </div>
+    </div>
+
+    <script>
+      
+        function fetchWeather() {
+            fetch('/api/current_weather')
+                .then(response => response.json())
+                .then(data => {
+                    const weatherCards = document.getElementById('weather-cards');
+                    weatherCards.innerHTML = '';
+                    data.forEach(cityWeather => {
+                        const card = `
+                            <div class="col-md-4 weather-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${cityWeather.city}</h5>
+                                        <p class="card-text">Temperature: ${cityWeather.temperature}°C</p>
+                                        <p class="card-text">Condition: ${cityWeather.condition}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        weatherCards.innerHTML += card;
+                    });
+                });
+        }
+
+       
+        function fetchAlerts() {
+            fetch('/api/check_alerts')
+                .then(response => response.json())
+                .then(data => {
+                    const alertContainer = document.getElementById('alert-container');
+                    alertContainer.innerHTML = '';
+                    data.forEach(alert => {
+                        const alertHtml = `
+                            <div class="alert alert-danger" role="alert">
+                                ${alert.message}
+                            </div>
+                        `;
+                        alertContainer.innerHTML += alertHtml;
+                    });
+                });
+        }
+
+       
+        function visualizeTrends() {
+            const city = document.getElementById('city-select').value;
+            fetch(`/api/visualize_trends/${city}`)
+                .then(response => response.json())
+                .then(data => {
+                    const trendImage = document.getElementById('trend-image');
+                    trendImage.src = 'data:image/png;base64,' + data.image;
+                });
+        }
+
+  
+        fetchWeather();
+        fetchAlerts();
+        setInterval(fetchWeather, 300000);  
+        setInterval(fetchAlerts, 300000);  
+    </script>
+</body>
+</html>
