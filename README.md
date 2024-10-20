@@ -60,7 +60,10 @@ apscheduler==3.7.0
 flask-cors==3.0.10
 ```
 
-### 3. Setup OpenWeatherMap API Key
+### (optional)3. Setup OpenWeatherMap API Key
+
+I have did it no need to update in case u need to update you own id
+
 
 Replace the placeholder `API_KEY` in the `app.py` file with your actual OpenWeatherMap API key.
 
