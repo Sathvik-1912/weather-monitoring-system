@@ -48,7 +48,7 @@ cd weather-monitoring-system
 Ensure that you have Python 3.x installed, then run:
 
 ```bash
-pip install -r requirements.txt
+pip install flask flask-cors apscheduler matplotlib requests
 ```
 
 The `requirements.txt` should contain:
