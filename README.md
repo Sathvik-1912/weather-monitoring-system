@@ -39,7 +39,7 @@ For visualization, random data has been added for the past 30 days to simulate h
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/weather-monitoring-system.git
+git clone https://github.com/Sathvik-1912/weather-monitoring-system.git
 cd weather-monitoring-system
 ```
 
