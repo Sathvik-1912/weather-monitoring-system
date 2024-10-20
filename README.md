@@ -51,14 +51,7 @@ Ensure that you have Python 3.x installed, then run:
 pip install flask flask-cors apscheduler matplotlib requests
 ```
 
-The `requirements.txt` should contain:
-```
-Flask==2.0.1
-requests==2.25.1
-matplotlib==3.4.2
-apscheduler==3.7.0
-flask-cors==3.0.10
-```
+
 
 ### (optional)3. Setup OpenWeatherMap API Key
 
