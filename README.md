@@ -1,6 +1,4 @@
-Here's a comprehensive README file for your weather monitoring system project. It covers the build instructions, design choices, dependencies, and additional information.
 
----
 
 # Real-Time Weather Monitoring System
 
